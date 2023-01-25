@@ -8,7 +8,11 @@ import { Container } from './styles';
 const Assets: React.FC = () => {
   return (
     <Container>
-      <SectionName>Lista de Assets</SectionName>
+      <SectionName>
+        <p>
+          Lista de <strong>Assets</strong>
+        </p>
+      </SectionName>
       <AssetList assets={theAssets} />
     </Container>
   );

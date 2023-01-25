@@ -13,3 +13,7 @@ button {
   cursor: pointer;
   outline: none;
 }
+strong {
+  font-weight: bold;
+  color: #fb0;
+}

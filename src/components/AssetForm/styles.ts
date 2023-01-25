@@ -30,9 +30,9 @@ export const Form = styled.form`
 export const Input = styled.input``;
 
 export const Label = styled.label`
-  color: #74888f;
-  font-size: 14px;
-  font-weight: 400;
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 300;
 `;
 
 export const SubmitButton = styled.button`

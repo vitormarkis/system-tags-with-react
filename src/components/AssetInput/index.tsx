@@ -8,12 +8,11 @@ const AssetInput: React.FC = () => {
   return (
     <Container>
       <Sticky>
-        <SectionName><p>
-          Insira um <strong style={{
-            fontWeight: 'bold',
-            color: '#fb0'
-          }}>novo asset</strong>
-        </p></SectionName>
+        <SectionName>
+          <p>
+            Insira um <strong>novo asset</strong>
+          </p>
+        </SectionName>
         <AssetForm />
       </Sticky>
     </Container>
