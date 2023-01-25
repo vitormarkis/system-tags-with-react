@@ -11,7 +11,7 @@ export const Form = styled.form`
     margin-bottom: 4px;
   }
 
-  input {
+  input, select {
     width: 100%;
     margin-bottom: 12px;
     padding: 9px 12px;
@@ -44,3 +44,5 @@ export const SubmitButton = styled.button`
   border: none;
   /* background-color: #fb0; */
 `;
+
+

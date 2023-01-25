@@ -1,13 +1,16 @@
 import React, { FormEvent, useState } from 'react';
-import { TAsset, TImportance } from '../../constants/data';
+import { ImportanceStrings, TAsset, TImportance } from '../../constants/data';
 import Margin from '../FragmentWinds/Margin';
+import InputDatalist from '../InputDatalist';
 
 import { Form, Input, Label, SubmitButton } from './styles';
 
 const AssetForm: React.FC = () => {
   const [assetName, setAssetName] = useState('');
   const [tagName, setTagName] = useState('');
-  const [tagImportance, setTagImportance] = useState<TImportance>('');
+  const [tagImportance, setTagImportance] = useState<TImportance>(
+    ImportanceStrings[0] as TImportance
+  );
 
   function handleSubmitNewAsset(e: FormEvent) {
     e.preventDefault();
@@ -40,9 +43,12 @@ const AssetForm: React.FC = () => {
         onChange={e => setTagName(e.target.value)}
       />
       <Label>Importância da tag:</Label>
-      <Input
-        placeholder="Escreva a importância da tag..."
-        onChange={e => setTagImportance(e.target.value as TImportance)}
+      <InputDatalist
+        options={ImportanceStrings}
+        value={tagImportance}
+        onChange={e =>
+          setTagImportance((e.target as HTMLInputElement).value as TImportance)
+        }
       />
       <SubmitButton onClick={handleSubmitNewAsset}>Adicionar</SubmitButton>
     </Form>

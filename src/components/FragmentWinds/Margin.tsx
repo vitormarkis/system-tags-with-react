@@ -20,7 +20,6 @@ const Margin: React.FC<TMargin> = ({ type, size }) => {
 
   const newProperty: string = marginTypes[type]();
   css = { ...css, [newProperty]: size + 'px' };
-  console.log(css);
 
   return (
     <div

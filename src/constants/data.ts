@@ -12,6 +12,12 @@ export type TTag = {
 
 export type TImportance = '' | 'crucial' | 'basic' | 'important'
 
+export const ImportanceStrings = [
+  'crucial',
+  'basic',
+  'important',
+]
+
 export const theAssets: TAsset[] = [
   {
     active: true,
