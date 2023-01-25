@@ -3,12 +3,12 @@ import styled from 'styled-components';
 export const Container = styled.div`
   position: static;
   display: flex;
-  justify-content: center;
   margin-block: 12px;
 `;
 
 export const Text = styled.h1`
-  text-align: center;
+  text-align: left;
   color: #fff;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 300;
 `;
