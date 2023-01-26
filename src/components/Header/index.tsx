@@ -1,10 +1,15 @@
 import React from 'react';
+import SearchBar from '../SearchBar';
 
-import { Container } from './styles';
+import { Container, Content } from './styles';
 
 const Header: React.FC = () => {
   return (
-    <Container />
+    <Container >
+      <Content>
+      <SearchBar placeholder="Procure tags por aqui..." />
+      </Content>
+    </Container>
   );
 }
 
