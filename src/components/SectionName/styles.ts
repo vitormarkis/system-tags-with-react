@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   position: static;
   display: flex;
-  margin-block: 12px;
+  margin-bottom: 12px;
 `;
 
 export const Text = styled.h1`

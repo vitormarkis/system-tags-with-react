@@ -7,7 +7,7 @@ export const Container = styled.div`
 
 export const Sticky = styled.div`
   background-color: #272727;
-  padding: 18px;
+  padding: 1rem;
   border-radius: 20px;
   position: sticky;
   display: flex;

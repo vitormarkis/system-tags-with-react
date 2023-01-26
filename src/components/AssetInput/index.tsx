@@ -1,6 +1,6 @@
 import React from 'react';
 import AssetForm from '../AssetForm';
-import SectionName from './SectionName';
+import SectionName from '../SectionName';
 
 import { Container, Sticky } from './styles';
 

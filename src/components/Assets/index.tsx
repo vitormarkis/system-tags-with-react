@@ -1,7 +1,7 @@
 import React from 'react';
 import AssetsProvider, { useAssets } from '../../contexts/assets';
 import AssetList from '../AssetList';
-import SectionName from './SectionName';
+import SectionName from '../SectionName';
 
 import { Container } from './styles';
 
