@@ -1,16 +1,19 @@
 import React from 'react';
-import { TTags } from '../AssetList';
+import { TTag } from '../../constants/data';
 
-interface ITag extends Pick<TTags, 'color'> {
+interface ITag extends Pick<TTag, 'color'> {
   children: string;
 }
 
-import { Container, Span } from './styles';
+import { CloseIcon, Container, Span, IconWrapper } from './styles';
 
 const Tag: React.FC<ITag> = ({ children, color }) => {
   return (
     <Container color={color}>
       <Span>{children}</Span>
+      <IconWrapper>
+        <CloseIcon />
+      </IconWrapper>
     </Container>
   );
 };

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { MagnifyingGlass } from '../../../node_modules/@styled-icons/fa-solid/MagnifyingGlass';
+import { SearchIcon } from '../../styles/icons';
 
 export const Container = styled.div`
   padding: 9px 12px;
@@ -26,10 +26,10 @@ const IconCSS = css({
   width: '16px',
   height: '16px',
   path: {
-    fill: '#aaa'
-  }
+    fill: '#aaa',
+  },
 });
 
-export const MagnifyingIcon = styled(MagnifyingGlass)`
+export const MagnifyingIcon = styled(SearchIcon)`
   ${IconCSS}
 `;

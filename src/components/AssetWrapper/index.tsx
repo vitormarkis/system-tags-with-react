@@ -15,8 +15,8 @@ const AssetWrapper: React.FC<AssetWrapperProps> = ({ active, name, tags }) => {
   const [isOpen, setIsOpen] = useState<boolean>(active);
 
   return (
-    <Container onClick={() => setIsOpen(!isOpen)}>
-      <AssetName>{name}</AssetName>
+    <Container >
+      <AssetName onClick={() => setIsOpen(!isOpen)}>{name}</AssetName>
 
       {isOpen && <List tags={tags} />}
     </Container>

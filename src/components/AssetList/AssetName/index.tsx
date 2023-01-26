@@ -2,9 +2,12 @@ import React from 'react';
 
 import { Container, Text } from './styles';
 
-const AssetName: React.FC<{ children: string }> = ({ children }) => {
+const AssetName: React.FC<{ children: string; onClick: () => void }> = ({
+  children,
+  onClick,
+}) => {
   return (
-    <Container>
+    <Container onClick={onClick}>
       <Text>{children}</Text>
     </Container>
   );
