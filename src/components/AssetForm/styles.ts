@@ -22,7 +22,7 @@ export const Form = styled.form`
 
     ::placeholder {
       color: #aaa;
-      font-size: 12px;
+  font-size: 0.75rem;
     }
   }
 `;
@@ -31,7 +31,7 @@ export const Input = styled.input``;
 
 export const Label = styled.label`
   color: #fff;
-  font-size: .75rem;
+  font-size: 0.75rem;
   font-weight: 300;
 `;
 

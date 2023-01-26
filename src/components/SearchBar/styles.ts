@@ -10,6 +10,10 @@ export const Container = styled.div`
   width: 320px;
   display: flex;
   gap: 0.75rem;
+
+  @media (max-width: 620px) {
+    width: 100%
+  }
 `;
 
 export const Input = styled.input`
@@ -18,7 +22,7 @@ export const Input = styled.input`
   border: none;
   ::placeholder {
     color: #aaa;
-    font-size: 12px;
+  font-size: .75rem;
   }
 `;
 

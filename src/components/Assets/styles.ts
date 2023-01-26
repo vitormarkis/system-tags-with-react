@@ -5,6 +5,6 @@ export const Container = styled.div`
   padding: 1rem;
   border-radius: 20px;
   user-select: none;
-  flex: 1 1 auto;
+  flex: 10 1 0;
   height: 100%;
 `;

@@ -9,14 +9,27 @@ export const Container = styled.div<Pick<TTag, 'color'>>`
   background-color: ${props => props.color};
   display: flex;
   align-items: center;
-  gap: .25rem;
+  gap: 0.25rem;
+
+@media (max-width: 760px) {
+  padding: 1px 6px;
+}
+
+@media (max-width: 670px) {
+  flex-grow: 1;
+  justify-content: space-between;
+}
 `;
 
 export const Span = styled.div`
-  font-size: 14px;
+  font-size: 0.75rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  @media (max-width: 760px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const IconWrapper = styled.div`
@@ -29,8 +42,7 @@ export const IconWrapper = styled.div`
   &:hover {
     background-color: #00000020;
   }
-
-`
+`;
 
 const IconCSS = css({
   width: '14px',

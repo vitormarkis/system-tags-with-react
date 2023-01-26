@@ -25,6 +25,7 @@ const AssetForm: React.FC = () => {
         {
           name: tagName,
           importance: tagImportance,
+          id: 0,
         },
       ],
     };

@@ -1,24 +1,20 @@
 import React, { useState } from 'react';
-import { TTag } from '../../constants/data';
+import { TAsset } from '../../constants/data';
 import AssetName from '../AssetList/AssetName';
 import List from '../List';
 
 import { Container } from './styles';
 
-interface AssetWrapperProps {
-    name: string;
-  active: boolean;
-  tags: TTag[]
-}
 
-const AssetWrapper: React.FC<AssetWrapperProps> = ({ active, name, tags }) => {
+const AssetWrapper: React.FC<TAsset> = ({ active, name, tags, id }) => {
   const [isOpen, setIsOpen] = useState<boolean>(active);
+  console.log('AssetWrapper', id)
 
   return (
     <Container >
       <AssetName onClick={() => setIsOpen(!isOpen)}>{name}</AssetName>
 
-      {isOpen && <List tags={tags} />}
+      {isOpen && <List tags={tags} assetID={id} />}
     </Container>
   );
 };

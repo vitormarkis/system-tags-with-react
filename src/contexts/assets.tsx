@@ -4,6 +4,7 @@ import {
   ReactNode,
   SetStateAction,
   useContext,
+  useEffect,
   useState,
 } from 'react';
 import { TAsset, theAssets } from '../constants/data';
@@ -20,12 +21,15 @@ export const AssetsContext = createContext<AssetsProviderProps>({
 });
 
 export default function AssetsProvider({ children }: { children: ReactNode }) {
-  
   const coloredAssets = theAssets.map(asset => {
-    return matchColors(asset)
-  })
-  
+    return matchColors(asset);
+  });
+
   const [assets, setAssets] = useState<TAsset[]>(coloredAssets);
+
+  useEffect(() => {
+    console.log('ATUALIZANDO: ', assets);
+  }, [assets]);
 
   return (
     <AssetsContext.Provider value={{ assets, setAssets }}>

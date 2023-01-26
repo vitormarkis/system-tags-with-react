@@ -8,9 +8,7 @@ const AssetList: React.FC<{ assets: TAsset[] }> = ({ assets }) => {
   return (
     <Container>
       {assets.map((asset, idx) => {
-        return (
-          <AssetWrapper tags={asset.tags} name={asset.name} key={`${asset.name}-${idx}`} active={asset.active} />
-        );
+        return <AssetWrapper {...asset} key={`${asset.name}-${idx}`} />;
       })}
     </Container>
   );
