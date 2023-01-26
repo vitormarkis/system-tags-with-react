@@ -7,6 +7,7 @@ import {
   useState,
 } from 'react';
 import { TAsset, theAssets } from '../constants/data';
+import { matchColors } from '../utils/matchColor';
 
 interface AssetsProviderProps {
   assets: TAsset[] | [];
@@ -19,7 +20,12 @@ export const AssetsContext = createContext<AssetsProviderProps>({
 });
 
 export default function AssetsProvider({ children }: { children: ReactNode }) {
-  const [assets, setAssets] = useState<TAsset[]>([]);
+  
+  const coloredAssets = theAssets.map(asset => {
+    return matchColors(asset)
+  })
+  
+  const [assets, setAssets] = useState<TAsset[]>(coloredAssets);
 
   return (
     <AssetsContext.Provider value={{ assets, setAssets }}>
