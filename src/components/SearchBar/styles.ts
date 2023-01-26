@@ -9,6 +9,7 @@ export const Container = styled.div`
   border: 1px solid #3d3d3d;
   width: 320px;
   display: flex;
+  align-items: center;
   gap: 0.75rem;
 
   @media (max-width: 620px) {
