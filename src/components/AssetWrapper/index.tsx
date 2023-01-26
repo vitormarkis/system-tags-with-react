@@ -8,7 +8,6 @@ import { Container } from './styles';
 
 const AssetWrapper: React.FC<TAsset> = ({ active, name, tags, id }) => {
   const [isOpen, setIsOpen] = useState<boolean>(active);
-  console.log('AssetWrapper', id)
 
   return (
     <Container >

@@ -27,10 +27,6 @@ export default function AssetsProvider({ children }: { children: ReactNode }) {
 
   const [assets, setAssets] = useState<TAsset[]>(coloredAssets);
 
-  useEffect(() => {
-    console.log('ATUALIZANDO: ', assets);
-  }, [assets]);
-
   return (
     <AssetsContext.Provider value={{ assets, setAssets }}>
       {children}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { TAsset } from '../../constants/data';
 import { useAssets } from '../../contexts/assets';
+import { excludeTag, getTargetAsset } from '../../utils/functionals';
 
 interface TagProps {
   id: number;
@@ -14,22 +15,23 @@ import { CloseIcon, Container, IconWrapper, Span } from './styles';
 const Tag: React.FC<TagProps> = ({ id, children, color, assetID }) => {
   const { assets, setAssets } = useAssets();
 
-  function excludeTagID(assetsArgument: TAsset[], tagID: number, assetID:number): TAsset[] {
-    const targetAsset = assetsArgument.find(asset => (
-      asset.id === assetID
-    ))
-    if(!targetAsset) throw new Error('Não foi possível encontrar o asset com ID informado')
-    const idx = assetsArgument.indexOf(targetAsset)
-    targetAsset.tags = targetAsset.tags.filter(tag => tag.id !== tagID);
-    assetsArgument[idx] = targetAsset
-    console.log(assetsArgument)
-    return assetsArgument
+  function excludeTagID(assets: TAsset[], tagID: number, assetID:number): TAsset[] | undefined {
+    const targetAsset = getTargetAsset(assets, assetID)
+    if(!targetAsset) return
+
+    const idx = assets.indexOf(targetAsset as TAsset)
+    targetAsset.tags = excludeTag(targetAsset, tagID)
+    
+    const copyOfAssets = [...assets]
+    copyOfAssets[idx] = targetAsset
+    
+    return copyOfAssets
   }
 
   function handleDeleteTag(assets: TAsset[], id: number, assetID: number) {
     const AssetsWithTagExcluded = excludeTagID(assets, id, assetID);
-    console.log(AssetsWithTagExcluded)
-    return setAssets(AssetsWithTagExcluded)
+    if(!AssetsWithTagExcluded) return
+    setAssets(AssetsWithTagExcluded)
   }
 
   return (

@@ -10,7 +10,6 @@ interface ListProps {
 }
 
 const List: React.FC<ListProps> = ({ tags, assetID }) => {
-  console.log('List', assetID)
   if (!tags) return <></>;
   return (
     <Container>

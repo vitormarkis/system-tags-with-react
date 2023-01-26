@@ -8,7 +8,7 @@ import InputDatalist from '../InputDatalist';
 import { Form, Input, Label, SubmitButton } from './styles';
 
 const AssetForm: React.FC = () => {
-  const { setAssets } = useAssets();
+  const { assets, setAssets } = useAssets();
   const [assetName, setAssetName] = useState('');
   const [tagName, setTagName] = useState('');
   const [tagImportance, setTagImportance] = useState<TImportance>(
@@ -18,7 +18,10 @@ const AssetForm: React.FC = () => {
   function handleSubmitNewAsset(e: FormEvent) {
     e.preventDefault();
 
+    const assetsLength = Object.entries(assets).length;
+
     let newAsset: TAsset = {
+      id: assetsLength,
       active: true,
       name: assetName,
       tags: [
@@ -30,10 +33,7 @@ const AssetForm: React.FC = () => {
       ],
     };
     newAsset = matchColors(newAsset);
-    setAssets(prevState => {
-      console.log([...prevState, newAsset]);
-      return [newAsset, ...prevState];
-    });
+    setAssets(prevState => [newAsset, ...prevState]);
   }
 
   return (
