@@ -7,4 +7,6 @@ export const Container = styled.div`
   user-select: none;
   flex: 10 1 0;
   height: 100%;
+  position: relative;
+  z-index: 1;
 `;

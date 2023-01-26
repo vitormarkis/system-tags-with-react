@@ -8,5 +8,11 @@ export const Container = styled.div`
   box-shadow: 0px .2rem 4px #00000020;
   border-radius: 12px;
   padding: 12px;
+
+  background-color: #29323a;
+  
+  &:nth-child(even) {
+  background-color: #212d36;
+  }
 `;
 

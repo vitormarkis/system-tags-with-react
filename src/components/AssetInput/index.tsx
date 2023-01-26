@@ -2,11 +2,12 @@ import React from 'react';
 import AssetForm from '../AssetForm';
 import SectionName from '../SectionName';
 
-import { Container, Sticky } from './styles';
+import { Container, GradientLunar, Sticky } from './styles';
 
 const AssetInput: React.FC = () => {
   return (
     <Container>
+      <GradientLunar />
       <Sticky>
         <SectionName>
           <p>
