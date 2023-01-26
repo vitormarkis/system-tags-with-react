@@ -14,7 +14,7 @@ const InputDatalist: React.FC<InputDatalistType> = ({
 }) => {
   return (
     <>
-      <select datatype="options" {...rest} value={options[0]}>
+      <select datatype="options" {...rest} value={value}>
         {options.map((importance, idx) => (
           <option key={`${importance}-${idx}`}>{importance}</option>
         ))}

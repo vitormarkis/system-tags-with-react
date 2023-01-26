@@ -1,13 +1,18 @@
 import React from 'react';
-import { TAsset } from '../AssetList';
+import { TTag } from '../../constants/data';
 import Tag from '../Tag';
 
 import { Container } from './styles';
 
-const List: React.FC<TAsset> = props => {
+interface ListProps {
+  tags: TTag[];
+}
+
+const List: React.FC<ListProps> = ({ tags }) => {
+  if (!tags) return <></>;
   return (
     <Container>
-      {props.tags.map(tag => (
+      {tags.map(tag => (
         <Tag key={tag.name} color={tag.color}>
           {tag.name}
         </Tag>

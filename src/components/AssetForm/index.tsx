@@ -1,11 +1,13 @@
 import React, { FormEvent, useState } from 'react';
 import { ImportanceStrings, TAsset, TImportance } from '../../constants/data';
+import { useAssets } from '../../contexts/assets';
 import Margin from '../FragmentWinds/Margin';
 import InputDatalist from '../InputDatalist';
 
 import { Form, Input, Label, SubmitButton } from './styles';
 
 const AssetForm: React.FC = () => {
+  const { setAssets } = useAssets()
   const [assetName, setAssetName] = useState('');
   const [tagName, setTagName] = useState('');
   const [tagImportance, setTagImportance] = useState<TImportance>(
@@ -24,7 +26,10 @@ const AssetForm: React.FC = () => {
         },
       ],
     };
-    console.log(newAsset);
+    setAssets(prevState => {
+      console.log([...prevState, newAsset])
+      return [...prevState, newAsset]
+    })
   }
 
   return (

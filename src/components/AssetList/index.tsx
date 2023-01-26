@@ -1,24 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TAsset } from '../../constants/data';
-import List from '../List';
-import AssetName from './AssetName';
+import AssetWrapper from '../AssetWrapper';
 
-import { AssetWrapper, Container } from './styles';
+import { Container } from './styles';
 
 const AssetList: React.FC<{ assets: TAsset[] }> = ({ assets }) => {
   return (
     <Container>
       {assets.map((asset, idx) => {
-        const [active, setActive] = useState<boolean>(asset.active);
-
         return (
-          <AssetWrapper
-            onClick={() => setActive(!active)}
-            key={`${asset.name}-${idx}`}
-          >
-            <AssetName>{asset.name}</AssetName>
-            {active && <List {...asset} active={asset.active} />}
-          </AssetWrapper>
+          <AssetWrapper tags={asset.tags} name={asset.name} key={`${asset.name}-${idx}`} active={asset.active} />
         );
       })}
     </Container>
