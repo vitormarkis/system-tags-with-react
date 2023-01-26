@@ -1,0 +1,2 @@
+1. Botão de editar o nome da tag e adicionar outra tag
+2. Botão de organizar tags por importância
