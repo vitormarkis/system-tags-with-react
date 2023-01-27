@@ -15,7 +15,7 @@ const Assets: React.FC = () => {
           Lista de <strong>Assets</strong>
         </p>
       </SectionName>
-      <AssetList assets={assets} />
+      <AssetList />
     </Container>
   );
 };

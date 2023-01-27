@@ -22,7 +22,7 @@ export const EditingContext = createContext<EditingStateProviderProps>({
 }: {
   children: ReactNode;
 }) {
-  const [editingState, setEditingState] = useState(true);
+  const [editingState, setEditingState] = useState(false);
 
   return (
     <EditingContext.Provider value={{ editingState, setEditingState }}>
