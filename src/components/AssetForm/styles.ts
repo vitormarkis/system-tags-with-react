@@ -37,10 +37,27 @@ export const Label = styled.label`
 `;
 
 export const SubmitButton = styled.button`
-  width: 100%;
   padding-block: 12px;
   border-radius: 12px;
   background-color: #fb0;
   color: #000;
   border: none;
+  flex: 1 0 auto;
 `;
+
+export const ButtonsWrapper = styled.div`
+width: 100%;
+  display: flex;
+  gap: 0.5rem;
+
+  & button:nth-of-type(2) {
+    
+  padding: 12px;
+  border-radius: 12px;
+  background-color: #fb0;
+
+  svg > path {
+    fill: #000;
+  }
+  }
+`

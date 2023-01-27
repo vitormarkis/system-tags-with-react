@@ -1,9 +1,13 @@
 import { TAsset } from '../constants/data';
 
-export function getLastTagID(database: TAsset): number {
-  const getAllTagIDs = database.tags.map(tag => {
-    if(tag.id === -Infinity) return 0
-    return tag.id
-  });
+export function getLastTagID(asset: TAsset): number {
+  if (asset.tags.length === 0) return 0;
+  const getAllTagIDs = asset.tags.map(tag => tag.id);
   return Math.max(...getAllTagIDs);
+}
+
+export function getLastAssetID(assets: TAsset[]): number {
+  if (assets.length === 0) return 0;
+  const getAllAssetsIDs = assets.map(asset => asset.id);
+  return Math.max(...getAllAssetsIDs);
 }
