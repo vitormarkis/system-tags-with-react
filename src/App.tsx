@@ -1,15 +1,17 @@
-import Footer from './components/Footer';
 import Header from './components/Header';
 import Main from './components/Main';
+import AssetsProvider from './contexts/assets';
 
 import { Layout } from './styles';
 
 function App() {
   return (
     <Layout>
-      <Header />
-      <Main />
-      {/* <Footer /> */}
+      <AssetsProvider>
+        <Header />
+        <Main />
+        {/* <Footer /> */}
+      </AssetsProvider>
     </Layout>
   );
 }

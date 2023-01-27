@@ -1,0 +1,12 @@
+    PROBLEMA
+--> Na função de adicionar um novo asset, no objeto dele, eu estava definindo o ID do novo asset, como o length do array de assets.
+--> Em teoria tudo certo, se eu tenho 3 assets, os ID deles respectivamente são 0, 1 e 2. Se o length desse array é 3, o ID do próximo asset poderia ser o length do array, que é 3, e tudo certo.
+--> O problema dessa abordagem é que se eu tenho dois assets, com respectivos IDs de 0 e 1, eu excluo o asset de ID 0, sobrando apenas o asset de ID 1, e adiciono um novo asset, o ID desse novo asset será 1, porque o length desse array é 1 (apenas o asset de ID 1). E eu terei dois assets com ID 1.
+
+
+
+    SOLUÇÃO
+-> A solução que encontrei, foi criar uma função - getLastID() - onde eu passo uma instância do array de assets, e ele faz um map, retornando apenas os IDs de cada asset, e armazeno isso numa variável.
+-> Nessa variável (number[]) eu aplico o Math.max() para que ele retorne apenas o maior ID de maior valor.
+-> Caso assets fosse um array vazio, a função já retorna 0 logo de cara.
+-> E na lógica de criação eu faço 1 + getLastID(assets)

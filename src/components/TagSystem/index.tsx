@@ -1,5 +1,4 @@
 import React from 'react';
-import AssetsProvider from '../../contexts/assets';
 import EditingIDProvider from '../../contexts/editingID';
 import EditingStateProvider from '../../contexts/editingState';
 import AssetInput from '../AssetInput';
@@ -12,11 +11,9 @@ const TagSystem: React.FC = () => {
     <Container>
       <EditingIDProvider>
         <EditingStateProvider>
-          <AssetsProvider>
-            <AssetInput />
+          <AssetInput />
 
-            <Assets />
-          </AssetsProvider>
+          <Assets />
         </EditingStateProvider>
       </EditingIDProvider>
     </Container>

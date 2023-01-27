@@ -23,21 +23,20 @@ const AssetWrapper: React.FC<TAsset> = ({
   tags,
   id: assetID,
 }) => {
-  const { setAssets } = useAssets();
+  const { assets, setAssets } = useAssets();
   const { editingID, setEditingID } = useEditingID();
   const { editingState, setEditingState } = useEditingState();
   const [isTagsVisible, setIsTagsVisible] = useState<boolean>(active);
-  const { assets } = useAssets();
 
   function handleDeleteClick(assetID: number) {
     // console.log('editingState', editingState)
     // console.log('editingID', editingID)
-    if(editingState && editingID === assetID) {
-      setEditingID(null)
-      setEditingState(false)
+    if (editingState && editingID === assetID) {
+      setEditingID(null);
+      setEditingState(false);
     }
     const database = [...assets];
-    console.log('database', database)
+    console.log('database', database);
     const assetsWithoutExludedOne = database.filter(
       asset => asset.id !== assetID
     );
@@ -48,26 +47,32 @@ const AssetWrapper: React.FC<TAsset> = ({
     const database = [...assets];
     const assetTarget = database.filter(asset => asset.id === assetID);
     setEditingState(true);
-    setIsTagsVisible(true)
-    const assetsWithTagsToggled = toggleTagActivityOnDatabase(database, assetID)
+    setIsTagsVisible(true);
+    const assetsWithTagsToggled = toggleTagActivityOnDatabase(
+      database,
+      assetID
+    );
     setAssets(assetsWithTagsToggled);
     setEditingID(assetID);
   }
 
   function handleToggleTags(assetID: number) {
-    setIsTagsVisible(!isTagsVisible)
+    setIsTagsVisible(!isTagsVisible);
     const database = [...assets];
-    const assetsWithTagsToggled = toggleTagActivityOnDatabase(database, assetID)
+    const assetsWithTagsToggled = toggleTagActivityOnDatabase(
+      database,
+      assetID
+    );
     setAssets(assetsWithTagsToggled);
   }
-  
+
   return (
     <Container>
       <TitleContainer>
         <AssetName onClick={() => handleToggleTags(assetID)}>{name}</AssetName>
         <IconsWrapper>
           <IconHover
-          className='add-tag'
+            className="add-tag"
             onClick={() => console.log('Adicionando novas tags no ' + assetID)}
           >
             <AddIcon title="Adicionar tags" />
@@ -75,7 +80,10 @@ const AssetWrapper: React.FC<TAsset> = ({
           <IconHover onClick={() => handleEditClick(assetID)}>
             <EditIcon title="Editar asset" />
           </IconHover>
-          <IconHover className='delete-tag' onClick={() => handleDeleteClick(assetID)}>
+          <IconHover
+            className="delete-tag"
+            onClick={() => handleDeleteClick(assetID)}
+          >
             <DeleteIcon title="Excluir asset" />
           </IconHover>
         </IconsWrapper>

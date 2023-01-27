@@ -6,13 +6,13 @@ import { Container, Content } from './styles';
 
 const Header: React.FC = () => {
   return (
-    <Container >
+    <Container>
       <Content>
         <Logo />
-      <SearchBar placeholder="Procure tags por aqui..." />
+        <SearchBar placeholder="Procure tags por aqui..." />
       </Content>
     </Container>
   );
-}
+};
 
 export default Header;
