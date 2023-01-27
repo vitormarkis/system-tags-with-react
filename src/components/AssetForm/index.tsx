@@ -3,6 +3,7 @@ import { ImportanceStrings, TAsset, TImportance } from '../../constants/data';
 import { useAssets } from '../../contexts/assets';
 import { useEditingID } from '../../contexts/editingID';
 import { useEditingState } from '../../contexts/editingState';
+import { getLastTagID } from '../../utils/getLastTagID';
 import { matchColors } from '../../utils/matchColor';
 import Margin from '../FragmentWinds/Margin';
 import InputDatalist from '../InputDatalist';
@@ -42,16 +43,23 @@ const AssetForm: React.FC = () => {
     } else {
       const database = [...assets];
       const target = database.filter(asset => asset.id === editingID)[0];
-      const target_idx = database.indexOf(target)
+      const target_idx = database.indexOf(target);
 
+      target.name = assetName;
+      database[target_idx] = target;
+      const lastTagID = getLastTagID(database[target_idx]);
+      console.log('O id da última tag é: ' + lastTagID);
+      console.log('O id da nova tag é: ' + (1 + lastTagID));
+      database[target_idx].tags.push({
+        name: tagName,
+        importance: tagImportance,
+        id: 1 + lastTagID,
+      });
 
-      target.name = assetName
-      database[target_idx] = target
-      
-      setAssets(database)
-      setAssetName('')
-      setEditingState(!editingState)
-      setEditingID(null)
+      setAssets(database);
+      setAssetName('');
+      setEditingID(null);
+      setEditingState(!editingState);
     }
   }
 
@@ -87,7 +95,9 @@ const AssetForm: React.FC = () => {
           setTagImportance((e.target as HTMLInputElement).value as TImportance)
         }
       />
-      <SubmitButton onClick={handleSubmitButton}>{(editingID === null) ? 'Adicionar' : 'Atualizar'}</SubmitButton>
+      <SubmitButton onClick={handleSubmitButton}>
+        {editingID === null ? 'Adicionar' : 'Atualizar'}
+      </SubmitButton>
     </Form>
   );
 };

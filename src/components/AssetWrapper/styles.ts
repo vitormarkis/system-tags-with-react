@@ -1,5 +1,8 @@
 import styled, { css } from 'styled-components';
-import { EditIcon as PencilSquare } from '../../styles/icons';
+import {
+  DeleteIcon as RoundedX,
+  EditIcon as PencilSquare,
+} from '../../styles/icons';
 
 export const Container = styled.div`
   cursor: pointer;
@@ -21,12 +24,18 @@ const iconCSS = css({
   width: '18px',
   height: '18px',
   path: {
-    fill: "#7f8891"
-  }
+    fill: '#7f8891',
+  },
 });
 
 export const EditIcon = styled(PencilSquare)`
   ${iconCSS}
+`;
+
+export const DeleteIcon = styled(RoundedX)`
+  ${iconCSS}
+  width: 16px;
+height: 16px;
 `;
 
 export const IconHover = styled.div`
@@ -48,5 +57,12 @@ export const IconHover = styled.div`
 export const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+`;
+
+export const IconsWrapper = styled.div`
+  display: flex;
   align-items: center;
+  margin-left: 1rem;
+  transform: translateY(-4px);
 `;
