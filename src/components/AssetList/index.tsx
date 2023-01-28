@@ -13,7 +13,7 @@ const AssetList: React.FC = () => {
 
   const showFiltered = searchValue.length > 0 ? true : false;
   useEffect(() => {
-    if(!showFiltered) {
+    if (!showFiltered) {
       // setAssets()
     }
   }, [searchValue]);
@@ -21,18 +21,10 @@ const AssetList: React.FC = () => {
     <Container>
       {showFiltered
         ? filteredAssets.map((asset, idx) => {
-            return (
-              <>
-                <AssetWrapper {...asset} key={`${asset.name}-${idx}`} />
-              </>
-            );
+            return <AssetWrapper {...asset} key={`${asset.name}-${idx}`} />;
           })
         : assets.map((asset, idx) => {
-            return (
-              <>
-                <AssetWrapper {...asset} key={`${asset.name}-${idx}`} />
-              </>
-            );
+            return <AssetWrapper {...asset} key={`${asset.name}-${idx}`} />;
           })}
     </Container>
   );

@@ -84,9 +84,11 @@ const AssetForm: React.FC = () => {
       setAssetName(target[0].name);
       setButtonText('Atualizar');
     }
+    // console.log('editingID', editingID)
+    // console.log('editingState', editingState)
   }, [editingState, editingID]);
 
-  useEffect(() => console.log(assets, editingID), [assets]);
+  // useEffect(() => console.log(assets, editingID), [assets]);
 
   return (
     <Form>

@@ -22,17 +22,21 @@ const SearchBar: React.FC<{ placeholder: string }> = ({ placeholder }) => {
     const active_tags_assets = setAllActives(database);
     const filtered_assets = filterAssets(active_tags_assets, search_value)
     
-    console.log(filtered_assets)
+    console.log('filtered_assets', filtered_assets)
     setFilteredAssets(filtered_assets);
   }
 
   useEffect(() => {
     const search_value = inputRef.current?.value;
     if (!search_value) return;
-    const database = [...assets]
-    const filtered_assets = filterAssets(database, search_value);
+    const database = assets.slice()
+
+    const active_tags_assets = setAllActives(database);
+    const filtered_assets = filterAssets(active_tags_assets, search_value)
+    
     const final_assets = search_value.length > 0 ? filtered_assets : [];
 
+    console.log('final_assets', final_assets)
     setFilteredAssets(final_assets);
   }, [assets]);
 
