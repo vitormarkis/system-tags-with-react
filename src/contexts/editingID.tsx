@@ -1,4 +1,4 @@
-import { createContext, Dispatch, SetStateAction, useContext, useState } from 'react';
+import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 
 interface EditingIDProviderProps {
   editingID: number | null;
@@ -12,6 +12,9 @@ const EditingIDContext = createContext<EditingIDProviderProps>({
 
 export default function EditingIDProvider({children}: {children: React.ReactNode}) {
     const [editingID, setEditingID] = useState<number | null>(null)
+
+    useEffect(() => console.log('editingID', editingID), [editingID])
+    
     return (
         <EditingIDContext.Provider value={{editingID, setEditingID}}>
             {children}

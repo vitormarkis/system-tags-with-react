@@ -14,9 +14,9 @@ export function matchColors(assetObjectWithoutColor: TAsset): TAsset {
       color,
     };
   });
-  assetObjectWithoutColor.tags = tagsWithColor
+  const assetObjectWithColor = {...assetObjectWithoutColor, tags: tagsWithColor}
   
-  return assetObjectWithoutColor;
+  return assetObjectWithColor;
 }
 
 export function addColorProperty(tagWithoutColor: TTag): TTag {

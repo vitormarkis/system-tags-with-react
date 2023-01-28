@@ -3,8 +3,8 @@ import { ImportanceStrings, TAsset, TImportance, TTag } from "../../constants/da
 import { useAppContext } from "../../contexts/appContext";
 import { useAssets } from "../../contexts/assets";
 import { useEditingID } from "../../contexts/editingID";
-import { getLastAssetID } from "../../utils/getLastTagID";
-import { matchColors } from "../../utils/matchColor";
+import { getLastAssetID, getLastTagID } from "../../utils/getLastTagID";
+import { addColorProperty, matchColors } from "../../utils/matchColor";
 import { DeleteIcon } from "../AssetWrapper/styles";
 import InputDatalist from "../InputDatalist";
 
@@ -33,51 +33,56 @@ const AssetForm: React.FC = () => {
           active: true,
         } as Omit<TAsset, "tags">;
 
-        console.log('>> indo para o modal de adicionar tags')
+        // console.log(">> indo para o modal de adicionar tags");
         setNewIncomingAsset(newAssetObject);
         setAppContext("adding_tags");
 
         break;
       }
       case "adding_tags": {
+        const database = [...assets];
+        const target = database.filter((asset) => asset.id === editingID)[0];
+        const target_idx = database.indexOf(target);
+        const asset = database[target_idx];
+
+        // console.log("typeof do editingID ", typeof editingID === "number");
+        const lastTagID = typeof editingID === "number" ? 1 + getLastTagID(asset) : 0;
         const newTag = {
-          id: 0,
+          id: lastTagID,
           importance: tagImportance,
           name: tagName,
         } satisfies TTag;
-        const newAsset = { ...newIncomingAsset, tags: [newTag] } satisfies TAsset;
-        console.log(newAsset);
-        const newAssetWithColorProperty = matchColors(newAsset);
-        setAssets((prevState) => [newAssetWithColorProperty, ...prevState]);
 
-        setAppContext(null);
+        const tagWithColor = addColorProperty(newTag);
+
+        const newAsset = { ...newIncomingAsset, tags: [newTag] } as TAsset;
+        // console.log(newAsset);
+        const newAssetWithColorProperty = matchColors(newAsset);
+
+        if (typeof editingID === "number") {
+          // console.log("Adicionando a tag ", newTag, " no asset de ID ", editingID);
+          database[target_idx].tags.push(tagWithColor);
+          setAssets(database);
+        } else {
+          setAssets((prevState) => [newAssetWithColorProperty, ...prevState]);
+        }
+
+        resetInterface("all");
+        break;
+      }
+      case "editing_asset": {
+        const database = [...assets];
+        const target = database.filter((asset) => asset.id === editingID)[0];
+        const target_idx = database.indexOf(target);
+        const asset = database[target_idx];
+        const assetWithNewName = { ...asset, name: assetName };
+        database[target_idx] = assetWithNewName;
+        setAssets(database);
+
+        resetInterface("all");
         break;
       }
     }
-
-    //   setAssets((prevState) => [newIncomingAsset, ...prevState]);
-    // } else {
-    //   // Atualizar asset / adicionar tags ao asset
-    //   const database = [...assets];
-    //   const target = database.filter((asset) => asset.id === editingID)[0];
-    //   const target_idx = database.indexOf(target);
-
-    //   target.name = assetName;
-    //   database[target_idx] = target;
-    //   const lastTagID = getLastTagID(database[target_idx]);
-
-    //   const newTag = {
-    //     name: tagName,
-    //     importance: tagImportance,
-    //     id: 1 + lastTagID,
-    //   } satisfies TTag;
-    //   const tagWithColor = addColorProperty(newTag);
-    //   database[target_idx].tags.push(tagWithColor);
-
-    //   setAssets(database);
-    //   resetInterface("all");
-    // }
-    // if (appContext !== null) setAppContext(null);
   }
 
   function resetInterface(reset: "data" | "all") {
@@ -133,13 +138,7 @@ const AssetForm: React.FC = () => {
       <ButtonsWrapper>
         <SubmitButton onClick={handleSubmitButton}>{buttonText}</SubmitButton>
         {appContext !== null && (
-          <button
-            title="Cancelar alterações"
-            onClick={() => {
-              setAppContext(null);
-              resetInterface("all");
-            }}
-          >
+          <button title="Cancelar alterações" onClick={() => resetInterface("all")}>
             <DeleteIcon />
           </button>
         )}

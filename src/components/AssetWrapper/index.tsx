@@ -60,6 +60,7 @@ const AssetWrapper: React.FC<TAsset> = ({ active, name, tags, id: assetID }) => 
 
   function handleAddNewTags(assetID: number) {
     if (appContext !== null) return;
+    setEditingID(assetID)
     console.log("Adicionando mais tags ao asset de ID " + String(assetID));
     setAppContext("adding_tags");
   }
