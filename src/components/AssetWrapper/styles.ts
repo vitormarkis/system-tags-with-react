@@ -1,12 +1,11 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 import {
   AddIcon as RoundedPlus,
   DeleteIcon as RoundedX,
   EditIcon as PencilSquare,
-} from '../../styles/icons';
+} from "../../styles/icons";
 
 export const Container = styled.div`
-  cursor: pointer;
   margin-block: 12px;
   border-bottom: 1px solid #00000060;
   border-top: 1px solid #ffffff20;
@@ -22,10 +21,10 @@ export const Container = styled.div`
 `;
 
 const iconCSS = css({
-  width: '18px',
-  height: '18px',
+  width: "18px",
+  height: "18px",
   path: {
-    fill: '#7f8891',
+    fill: "#7f8891",
   },
 });
 
@@ -83,6 +82,7 @@ export const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  cursor: pointer;
 `;
 
 export const IconsWrapper = styled.div`

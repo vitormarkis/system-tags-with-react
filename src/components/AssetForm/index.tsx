@@ -6,7 +6,6 @@ import { useEditingID } from "../../contexts/editingID";
 import { getLastAssetID, getLastTagID } from "../../utils/getLastTagID";
 import { addColorProperty, matchColors } from "../../utils/matchColor";
 import { DeleteIcon } from "../AssetWrapper/styles";
-import Margin from "../FragmentWinds/Margin";
 import InputDatalist from "../InputDatalist";
 
 import { ButtonsWrapper, Form, Input, Label, SubmitButton } from "./styles";
@@ -89,14 +88,12 @@ const AssetForm: React.FC = () => {
 
   return (
     <Form>
-      <Label>Nome do asset:</Label>
+      <Label>Adicione o nome:</Label>
       <Input
         placeholder="Escreva um novo asset..."
         onChange={(e) => setAssetName(e.target.value)}
         value={assetName}
       />
-
-      <Margin type="block" size={12} />
 
       <Label>Nome da tag:</Label>
       <Input

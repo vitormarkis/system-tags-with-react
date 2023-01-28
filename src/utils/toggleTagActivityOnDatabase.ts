@@ -1,19 +1,16 @@
-import { TAsset } from '../constants/data';
+import { TAsset } from "../constants/data";
 
 export function toggleTagActivityOnDatabase(
   database: TAsset[],
   assetID: number,
   state?: boolean
 ): TAsset[] {
-  // console.log('IN', database)
-  const toggledActive = database.map(asset => {
-    const copy = {...asset}
-    if (copy.id === assetID) {
-      // console.log(copy)
-      copy.active = state ?? !copy.active;
+  const toggledActive = database.map((original_asset) => {
+    const asset = { ...original_asset };
+    if (asset.id === assetID) {
+      asset.active = state !== undefined ? state : !asset.active;
     }
-    return copy;
+    return asset;
   });
-  // console.log('OUT', toggledActive)
-  return toggledActive
+  return toggledActive;
 }

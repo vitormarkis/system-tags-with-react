@@ -43,11 +43,11 @@ const AssetWrapper: React.FC<TAsset> = ({ active, name, tags, id: assetID }) => 
   function handleEditClick(assetID: number) {
     if (appContext !== null) return;
     setAppContext("editing_asset");
-    const database = [...assets];
+    setEditingID(assetID);
     setIsTagsVisible(true);
+    const database = [...assets];
     const assetsWithTagsToggled = toggleTagActiveOnDB(database, assetID, true);
     setAssets(assetsWithTagsToggled);
-    setEditingID(assetID);
   }
 
   function handleToggleTags(assetID: number) {

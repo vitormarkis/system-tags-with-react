@@ -1,22 +1,31 @@
-import React from 'react';
-import AssetForm from '../AssetForm';
-import SectionName from '../SectionName';
+import React, { useEffect, useState } from "react";
+import { useAppContext } from "../../contexts/appContext";
+import { generateFormTitle } from "../../utils/generateFormTitle";
+import AssetForm from "../AssetForm";
+import SectionName from "../SectionName";
 
-import { Container, GradientLunar, Sticky } from './styles';
+import { Container, GradientLunar, Sticky } from "./styles";
 
 const AssetInput: React.FC = () => {
+  const { appContext } = useAppContext();
+  const [formTitle, setFormTitle] = useState<React.ReactElement | null>();
+
+  useEffect(() => {
+    if(appContext === null) return
+    setFormTitle(generateFormTitle[appContext])
+  }, [appContext]);
   return (
-    <Container>
-      <GradientLunar />
-      <Sticky>
-        <SectionName>
-          <p>
-            Insira um <strong>novo asset</strong>
-          </p>
-        </SectionName>
-        <AssetForm />
-      </Sticky>
-    </Container>
+    <>
+      {appContext !== null && (
+        <Container>
+          <GradientLunar />
+          <Sticky>
+            {formTitle && <SectionName>{formTitle}</SectionName>}
+            <AssetForm />
+          </Sticky>
+        </Container>
+      )}
+    </>
   );
 };
 
