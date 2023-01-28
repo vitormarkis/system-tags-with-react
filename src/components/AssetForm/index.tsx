@@ -3,8 +3,8 @@ import { ImportanceStrings, TAsset, TImportance, TTag } from "../../constants/da
 import { useAppContext } from "../../contexts/appContext";
 import { useAssets } from "../../contexts/assets";
 import { useEditingID } from "../../contexts/editingID";
-import { getLastAssetID, getLastTagID } from "../../utils/getLastTagID";
-import { addColorProperty, matchColors } from "../../utils/matchColor";
+import { getLastAssetID } from "../../utils/getLastTagID";
+import { matchColors } from "../../utils/matchColor";
 import { DeleteIcon } from "../AssetWrapper/styles";
 import InputDatalist from "../InputDatalist";
 
@@ -20,49 +20,64 @@ const AssetForm: React.FC = () => {
   const [tagImportance, setTagImportance] = useState<TImportance>(
     ImportanceStrings[0] as TImportance
   );
+  const [newIncomingAsset, setNewIncomingAsset] = useState<Omit<TAsset, "tags"> | TAsset>();
 
   function handleSubmitButton(e: FormEvent) {
     e.preventDefault();
 
-    if (editingID === null) {
-      const lastAssetID = getLastAssetID(assets);
+    switch (appContext) {
+      case "adding_asset": {
+        const newAssetObject = {
+          id: 1 + getLastAssetID(assets),
+          name: assetName,
+          active: true,
+        } as Omit<TAsset, "tags">;
 
-      let newAsset: TAsset = {
-        id: 1 + lastAssetID,
-        active: true,
-        name: assetName,
-        tags: [
-          {
-            name: tagName,
-            importance: tagImportance,
-            id: 0,
-          },
-        ],
-      };
-      newAsset = matchColors(newAsset);
-      setAssets((prevState) => [newAsset, ...prevState]);
-    } else {
-      // Atualizar asset / adicionar tags ao asset
-      const database = [...assets];
-      const target = database.filter((asset) => asset.id === editingID)[0];
-      const target_idx = database.indexOf(target);
+        console.log('>> indo para o modal de adicionar tags')
+        setNewIncomingAsset(newAssetObject);
+        setAppContext("adding_tags");
 
-      target.name = assetName;
-      database[target_idx] = target;
-      const lastTagID = getLastTagID(database[target_idx]);
+        break;
+      }
+      case "adding_tags": {
+        const newTag = {
+          id: 0,
+          importance: tagImportance,
+          name: tagName,
+        } satisfies TTag;
+        const newAsset = { ...newIncomingAsset, tags: [newTag] } satisfies TAsset;
+        console.log(newAsset);
+        const newAssetWithColorProperty = matchColors(newAsset);
+        setAssets((prevState) => [newAssetWithColorProperty, ...prevState]);
 
-      const newTag = {
-        name: tagName,
-        importance: tagImportance,
-        id: 1 + lastTagID,
-      } satisfies TTag;
-      const tagWithColor = addColorProperty(newTag);
-      database[target_idx].tags.push(tagWithColor);
-
-      setAssets(database);
-      resetInterface("all");
+        setAppContext(null);
+        break;
+      }
     }
-    if (appContext !== null) setAppContext(null);
+
+    //   setAssets((prevState) => [newIncomingAsset, ...prevState]);
+    // } else {
+    //   // Atualizar asset / adicionar tags ao asset
+    //   const database = [...assets];
+    //   const target = database.filter((asset) => asset.id === editingID)[0];
+    //   const target_idx = database.indexOf(target);
+
+    //   target.name = assetName;
+    //   database[target_idx] = target;
+    //   const lastTagID = getLastTagID(database[target_idx]);
+
+    //   const newTag = {
+    //     name: tagName,
+    //     importance: tagImportance,
+    //     id: 1 + lastTagID,
+    //   } satisfies TTag;
+    //   const tagWithColor = addColorProperty(newTag);
+    //   database[target_idx].tags.push(tagWithColor);
+
+    //   setAssets(database);
+    //   resetInterface("all");
+    // }
+    // if (appContext !== null) setAppContext(null);
   }
 
   function resetInterface(reset: "data" | "all") {

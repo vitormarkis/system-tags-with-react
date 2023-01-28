@@ -17,7 +17,7 @@ const Assets: React.FC = () => {
 
   function handleNewAsset() {
     if (appContext !== null) return;
-
+    console.log('Adicionando nova tag')
     setAppContext("adding_asset");
   }
 
