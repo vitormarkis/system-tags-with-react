@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 import {
+  AddIcon as RoundedPlus,
   DeleteIcon as RoundedX,
   EditIcon as PencilSquare,
-  AddIcon as RoundedPlus
 } from '../../styles/icons';
 
 export const Container = styled.div`
@@ -34,17 +34,15 @@ export const EditIcon = styled(PencilSquare)`
 `;
 
 export const AddIcon = styled(RoundedPlus)`
-${iconCSS}
+  ${iconCSS}
   width: 17px;
-height: 17px;
-`
+  height: 17px;
+`;
 
 export const DeleteIcon = styled(RoundedX)`
   ${iconCSS}
   width: 17px;
-height: 17px;
-
-  
+  height: 17px;
 `;
 
 export const IconHover = styled.div`
@@ -62,23 +60,23 @@ export const IconHover = styled.div`
     }
   }
 
-&.delete-tag:hover {
-  background-color: #FB4D3D;
-  box-shadow: 0 -1px 0 1px #00000015, 0 1px 0 1px #00000015;
+  &.delete-tag:hover {
+    background-color: #fb4d3d;
+    box-shadow: 0 -1px 0 1px #00000015, 0 1px 0 1px #00000015;
 
-  svg > path {
-    fill: #fff;
+    svg > path {
+      fill: #fff;
+    }
   }
-}
 
-&.add-tag:hover {
-  background-color: #345995;
-  box-shadow: 0 -1px 0 1px #00000015, 0 1px 0 1px #00000015;
+  &.add-tag:hover {
+    background-color: #345995;
+    box-shadow: 0 -1px 0 1px #00000015, 0 1px 0 1px #00000015;
 
-  svg > path {
-    fill: #fff;
+    svg > path {
+      fill: #fff;
+    }
   }
-}
 `;
 
 export const TitleContainer = styled.div`

@@ -24,7 +24,7 @@ export default function SearchValueProvider({
 }) {
   const [searchValue, setSearchValue] = useState('');
 
-  useEffect(() => console.log(searchValue), [searchValue])
+  // useEffect(() => console.log(searchValue), [searchValue])
   
   return (
     <SearchValueContext.Provider value={{ searchValue, setSearchValue }}>

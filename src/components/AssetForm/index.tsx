@@ -4,7 +4,7 @@ import { useAssets } from '../../contexts/assets';
 import { useEditingID } from '../../contexts/editingID';
 import { useEditingState } from '../../contexts/editingState';
 import { getLastAssetID, getLastTagID } from '../../utils/getLastTagID';
-import { matchColors, matchTagColor } from '../../utils/matchColor';
+import { matchColors, addColorProperty } from '../../utils/matchColor';
 import { DeleteIcon } from '../AssetWrapper/styles';
 import Margin from '../FragmentWinds/Margin';
 import InputDatalist from '../InputDatalist';
@@ -51,15 +51,13 @@ const AssetForm: React.FC = () => {
       target.name = assetName;
       database[target_idx] = target;
       const lastTagID = getLastTagID(database[target_idx]);
-      // console.log('O id da última tag é: ' + lastTagID);
-      // console.log('O id da nova tag é: ' + (1 + lastTagID));
       
       const newTag = {
         name: tagName,
         importance: tagImportance,
         id: 1 + lastTagID,
       } satisfies TTag
-      const tagWithColor = matchTagColor(newTag)
+      const tagWithColor = addColorProperty(newTag)
       database[target_idx].tags.push(tagWithColor);
 
       setAssets(database);

@@ -19,7 +19,7 @@ export function matchColors(assetObjectWithoutColor: TAsset): TAsset {
   return assetObjectWithoutColor;
 }
 
-export function matchTagColor(tagWithoutColor: TTag): TTag {
+export function addColorProperty(tagWithoutColor: TTag): TTag {
   const getColorObject = importance_colors.filter(
     obj => obj.importance === tagWithoutColor.importance
   );

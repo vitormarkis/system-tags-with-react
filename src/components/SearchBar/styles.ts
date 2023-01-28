@@ -18,6 +18,7 @@ export const Container = styled.div`
 `;
 
 export const Input = styled.input`
+width: 100%;
   outline: none;
   background-color: transparent;
   border: none;

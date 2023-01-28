@@ -4,10 +4,12 @@ import {
   ReactNode,
   SetStateAction,
   useContext,
+  useEffect,
   useState,
 } from 'react';
 import { TAsset, theAssets } from '../constants/data';
 import { matchColors } from '../utils/matchColor';
+import { useFilteredAssets } from './filteredAssets';
 
 interface AssetsProviderProps {
   assets: TAsset[] | [];

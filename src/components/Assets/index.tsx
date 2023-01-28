@@ -1,20 +1,34 @@
 import React from 'react';
-import { useAssets } from '../../contexts/assets';
 import AssetList from '../AssetList';
 import SectionName from '../SectionName';
 
-import { Container } from './styles';
+import {
+  Container,
+  IconHover,
+  IconsContainer,
+  NewAssetIcon,
+  SortIcon,
+  TitleContainer,
+} from './styles';
 
 const Assets: React.FC = () => {
-  const { assets } = useAssets();
-
   return (
     <Container>
-      <SectionName>
-        <p>
-          Lista de <strong>Assets</strong>
-        </p>
-      </SectionName>
+      <TitleContainer>
+        <SectionName>
+          <p>
+            Lista de <strong>Assets</strong>
+          </p>
+        </SectionName>
+        <IconsContainer>
+          <IconHover className="new-asset" title='Adicionar um novo asset'>
+            <NewAssetIcon />
+          </IconHover>
+          <IconHover className="sort-asset" title='Ordenar tags'>
+            <SortIcon />
+          </IconHover>
+        </IconsContainer>
+      </TitleContainer>
       <AssetList />
     </Container>
   );
