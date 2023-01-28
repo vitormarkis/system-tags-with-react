@@ -1,36 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { TAsset } from "../../constants/data";
+import { useAppContext } from "../../contexts/appContext";
 import { useAssets } from "../../contexts/assets";
 import { useEditingID } from "../../contexts/editingID";
-import { useEditingState } from "../../contexts/editingState";
 import { useSearchValue } from "../../contexts/searchValue";
 import { toggleTagActivityOnDatabase as toggleTagActiveOnDB } from "../../utils/toggleTagActivityOnDatabase";
 import AssetName from "../AssetList/AssetName";
 import List from "../List";
 
-import { AddIcon, Container, DeleteIcon, EditIcon, IconHover, IconsWrapper, TitleContainer } from "./styles";
+import {
+  AddIcon,
+  Container,
+  DeleteIcon,
+  EditIcon,
+  IconHover,
+  IconsWrapper,
+  TitleContainer,
+} from "./styles";
 
 const AssetWrapper: React.FC<TAsset> = ({ active, name, tags, id: assetID }) => {
-  // console.log(name, active)
+  const { appContext, setAppContext } = useAppContext();
   const { assets, setAssets } = useAssets();
   const { editingID, setEditingID } = useEditingID();
-  const { editingState, setEditingState } = useEditingState();
   const [isTagsVisible, setIsTagsVisible] = useState<boolean>(active);
   const { searchValue } = useSearchValue();
-  // if (assetID === 2) {
-  //   console.log("isTagsVisible", isTagsVisible);
-  // }
 
   useEffect(() => {
-      setIsTagsVisible(active);
+    setIsTagsVisible(active);
   }, [searchValue, active]);
 
   function handleDeleteClick(assetID: number) {
-    // console.log('editingState', editingState)
-    // console.log('editingID', editingID)
-    if (editingState && editingID === assetID) {
+    if (appContext === "editing_asset" && editingID === assetID) {
+      setAppContext(null);
       setEditingID(null);
-      setEditingState(false);
     }
     const database = [...assets];
     console.log("database", database);
@@ -39,8 +41,9 @@ const AssetWrapper: React.FC<TAsset> = ({ active, name, tags, id: assetID }) => 
   }
 
   function handleEditClick(assetID: number) {
+    if (appContext !== null) return;
+    setAppContext("editing_asset");
     const database = [...assets];
-    setEditingState(true);
     setIsTagsVisible(true);
     const assetsWithTagsToggled = toggleTagActiveOnDB(database, assetID, true);
     setAssets(assetsWithTagsToggled);
@@ -55,12 +58,18 @@ const AssetWrapper: React.FC<TAsset> = ({ active, name, tags, id: assetID }) => 
     setAssets(assetsWithTagsToggled);
   }
 
+  function handleAddNewTags(assetID: number) {
+    if (appContext !== null) return;
+    console.log("Adicionando mais tags ao asset de ID " + String(assetID));
+    setAppContext("adding_tags");
+  }
+
   return (
     <Container>
       <TitleContainer>
         <AssetName onClick={() => handleToggleTags(assetID)}>{name}</AssetName>
         <IconsWrapper>
-          <IconHover className="add-tag" onClick={() => console.log("Adicionando novas tags no " + assetID)}>
+          <IconHover className="add-tag" onClick={() => handleAddNewTags(assetID)}>
             <AddIcon title="Adicionar tags" />
           </IconHover>
           <IconHover onClick={() => handleEditClick(assetID)}>

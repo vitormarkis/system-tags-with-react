@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -7,7 +7,6 @@ export const Container = styled.div`
   padding-inline: 1rem;
 
   @media (max-width: 620px) {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
-
 `;

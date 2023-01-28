@@ -1,6 +1,7 @@
-import React from 'react';
-import AssetList from '../AssetList';
-import SectionName from '../SectionName';
+import React from "react";
+import { useAppContext } from "../../contexts/appContext";
+import AssetList from "../AssetList";
+import SectionName from "../SectionName";
 
 import {
   Container,
@@ -9,9 +10,21 @@ import {
   NewAssetIcon,
   SortIcon,
   TitleContainer,
-} from './styles';
+} from "./styles";
 
 const Assets: React.FC = () => {
+  const { appContext, setAppContext } = useAppContext();
+
+  function handleNewAsset() {
+    if (appContext !== null) return;
+
+    setAppContext("adding_asset");
+  }
+
+  function handleSortTags() {
+    console.log("Organizando as tags");
+  }
+
   return (
     <Container>
       <TitleContainer>
@@ -21,10 +34,10 @@ const Assets: React.FC = () => {
           </p>
         </SectionName>
         <IconsContainer>
-          <IconHover className="new-asset" title='Adicionar um novo asset'>
+          <IconHover onClick={handleNewAsset} className="new-asset" title="Adicionar um novo asset">
             <NewAssetIcon />
           </IconHover>
-          <IconHover className="sort-asset" title='Ordenar tags'>
+          <IconHover onClick={handleSortTags} className="sort-asset" title="Ordenar tags">
             <SortIcon />
           </IconHover>
         </IconsContainer>

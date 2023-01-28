@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAssets } from "../../contexts/assets";
 import { useFilteredAssets } from "../../contexts/filteredAssets";
 import { useSearchValue } from "../../contexts/searchValue";
@@ -7,16 +7,11 @@ import AssetWrapper from "../AssetWrapper";
 import { Container } from "./styles";
 
 const AssetList: React.FC = () => {
-  const { assets, setAssets } = useAssets();
+  const { assets } = useAssets();
   const { filteredAssets } = useFilteredAssets();
   const { searchValue } = useSearchValue();
 
   const showFiltered = searchValue.length > 0 ? true : false;
-  useEffect(() => {
-    if (!showFiltered) {
-      // setAssets()
-    }
-  }, [searchValue]);
   return (
     <Container>
       {showFiltered
