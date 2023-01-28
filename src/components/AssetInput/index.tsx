@@ -4,7 +4,7 @@ import { generateFormTitle } from "../../utils/generateFormTitle";
 import AssetForm from "../AssetForm";
 import SectionName from "../SectionName";
 
-import { Container, GradientLunar, Sticky } from "./styles";
+import { Container, Sticky } from "./styles";
 
 const AssetInput: React.FC = () => {
   const { appContext } = useAppContext();
@@ -18,7 +18,6 @@ const AssetInput: React.FC = () => {
     <>
       {appContext !== null && (
         <Container>
-          <GradientLunar />
           <Sticky>
             {formTitle && <SectionName>{formTitle}</SectionName>}
             <AssetForm />
