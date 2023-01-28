@@ -4,6 +4,7 @@ import { SearchIcon } from '../../styles/icons';
 
 export const Container = styled.div`
   padding: 9px 12px;
+  margin-left: auto;
   border-radius: 12px;
   background-color: #444;
   border: 1px solid #3d3d3d;
