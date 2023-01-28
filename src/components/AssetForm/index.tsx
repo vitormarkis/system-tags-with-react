@@ -88,25 +88,33 @@ const AssetForm: React.FC = () => {
 
   return (
     <Form>
-      <Label>Adicione o nome:</Label>
-      <Input
-        placeholder="Escreva um novo asset..."
-        onChange={(e) => setAssetName(e.target.value)}
-        value={assetName}
-      />
+      {(appContext === "adding_asset" || appContext === "editing_asset") && (
+        <>
+          <Label>Adicione o nome:</Label>
+          <Input
+            placeholder="Escreva um novo asset..."
+            onChange={(e) => setAssetName(e.target.value)}
+            value={assetName}
+          />
+        </>
+      )}
 
-      <Label>Nome da tag:</Label>
-      <Input
-        placeholder="Escreva o nome da tag..."
-        onChange={(e) => setTagName(e.target.value)}
-        value={tagName}
-      />
-      <Label>Importância da tag:</Label>
-      <InputDatalist
-        options={ImportanceStrings}
-        value={tagImportance}
-        onChange={(e) => setTagImportance((e.target as HTMLInputElement).value as TImportance)}
-      />
+      {appContext === "adding_tags" && (
+        <>
+          <Label>Nome da tag:</Label>
+          <Input
+            placeholder="Escreva o nome da tag..."
+            onChange={(e) => setTagName(e.target.value)}
+            value={tagName}
+          />
+          <Label>Importância da tag:</Label>
+          <InputDatalist
+            options={ImportanceStrings}
+            value={tagImportance}
+            onChange={(e) => setTagImportance((e.target as HTMLInputElement).value as TImportance)}
+          />
+        </>
+      )}
       <ButtonsWrapper>
         <SubmitButton onClick={handleSubmitButton}>{buttonText}</SubmitButton>
         {appContext !== null && (
