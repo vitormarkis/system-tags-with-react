@@ -1,15 +1,34 @@
-export const importance_colors = [
+import { TImportance } from "./data";
+
+interface Props {
+  importance: TImportance,
+  color: string
+}
+
+export const importance_colors: Props[] = [
   {
     importance: 'important',
     color: '#8338EC',
   },
   {
     importance: 'crucial',
-    color: '#3A86FF',
+    color: '#922D50',
   },
   {
     importance: 'basic',
     color: '#FF006E',
+  },
+  {
+    importance: 'casual',
+    color: '#0bb',
+  },
+  {
+    importance: 'junior',
+    color: '#2b6',
+  },
+  {
+    importance: 'pleno',
+    color: '#F1D302',
   },
 ];
 

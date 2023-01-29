@@ -12,7 +12,7 @@ export type TTag = {
   color?: string;
 };
 
-export type TImportance = "" | "crucial" | "basic" | "important";
+export type TImportance = "" | "crucial" | "basic" | "important" | "casual" | "junior" | "pleno";
 
 export const ImportanceStrings = ["crucial", "basic", "important"];
 
