@@ -14,7 +14,7 @@ export type TTag = {
 
 export type TImportance = "" | "crucial" | "basic" | "important" | "casual" | "junior" | "pleno";
 
-export const ImportanceStrings = ["crucial", "basic", "important"];
+export const ImportanceStrings: TImportance[] = ["crucial", "basic", "important", "casual", "junior", "pleno"];
 
 export const theAssets: TAsset[] = [
   {

@@ -28,11 +28,11 @@ export default function AssetsProvider({ children }: { children: ReactNode }) {
   });
 
   const [assets, setAssets] = useState<TAsset[]>(coloredAssets);
-  useEffect(() => {
-    const newAssets = generateAssets(assets, 10, [3,14])
-    const newAssetsColorized = newAssets.map(asset => matchColors(asset))
-    setAssets(prevState => [...prevState, ...newAssetsColorized])
-  }, [])
+  // useEffect(() => {
+  //   const newAssets = generateAssets(assets, 10, [3,14])
+  //   const newAssetsColorized = newAssets.map(asset => matchColors(asset))
+  //   setAssets(prevState => [...prevState, ...newAssetsColorized])
+  // }, [])
 
   return (
     <AssetsContext.Provider value={{ assets, setAssets }}>

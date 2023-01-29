@@ -13,11 +13,8 @@ export const Container = styled.div`
   border-radius: 12px;
   padding: 12px;
 
-  background-color: #29323a;
+  background-color: var(--bg-asset);
 
-  &:nth-child(even) {
-    background-color: #212d36;
-  }
 `;
 
 const iconCSS = css({

@@ -17,7 +17,7 @@ export const Container = styled.div`
 `;
 
 export const Sticky = styled.div`
-  background-color: #272727;
+  background-color: var(--bg-container);
   padding: 1rem;
   border-radius: 20px;
   display: flex;

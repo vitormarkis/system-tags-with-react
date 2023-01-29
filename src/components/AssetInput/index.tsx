@@ -18,7 +18,7 @@ const AssetInput: React.FC = () => {
   return (
     <>
       {appContext !== null && (
-        <StickyBox offsetTop={16}>
+        <StickyBox className="input-form-sticky" offsetTop={69}>
           <Container>
             <Sticky>
               {formTitle && <SectionName>{formTitle}</SectionName>}

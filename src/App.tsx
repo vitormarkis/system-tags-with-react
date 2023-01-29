@@ -1,10 +1,10 @@
-import Header from './components/Header';
-import Main from './components/Main';
-import AssetsProvider from './contexts/assets';
-import FilteredAssetsProvider from './contexts/filteredAssets';
-import SearchValueProvider from './contexts/searchValue';
+import Header from "./components/Header";
+import Main from "./components/Main";
+import AssetsProvider from "./contexts/assets";
+import FilteredAssetsProvider from "./contexts/filteredAssets";
+import SearchValueProvider from "./contexts/searchValue";
 
-import { Layout } from './styles';
+import { GradientLunar, GradientSpacial, Layout } from "./styles";
 
 function App() {
   return (
@@ -12,6 +12,8 @@ function App() {
       <FilteredAssetsProvider>
         <AssetsProvider>
           <SearchValueProvider>
+            <GradientLunar />
+            <GradientSpacial />
             <Header />
             <Main />
             {/* <Footer /> */}

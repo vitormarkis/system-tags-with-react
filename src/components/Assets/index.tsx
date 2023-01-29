@@ -10,8 +10,6 @@ import {
   NewAssetIcon,
   SortIcon,
   TitleContainer,
-  GradientLunar,
-  GradientSpacial
 } from "./styles";
 
 const Assets: React.FC = () => {
@@ -19,7 +17,7 @@ const Assets: React.FC = () => {
 
   function handleNewAsset() {
     if (appContext !== null) return;
-    console.log('Adicionando nova tag')
+    console.log("Adicionando nova tag");
     setAppContext("adding_asset");
   }
 
@@ -29,8 +27,6 @@ const Assets: React.FC = () => {
 
   return (
     <Container>
-          <GradientLunar />
-          <GradientSpacial />
       <TitleContainer>
         <SectionName>
           <p>
