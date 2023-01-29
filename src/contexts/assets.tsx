@@ -8,6 +8,7 @@ import {
   useState,
 } from 'react';
 import { TAsset, theAssets } from '../constants/data';
+import { generateAssets } from '../utils/generateAssets';
 import { matchColors } from '../utils/matchColor';
 import { useFilteredAssets } from './filteredAssets';
 
@@ -27,6 +28,11 @@ export default function AssetsProvider({ children }: { children: ReactNode }) {
   });
 
   const [assets, setAssets] = useState<TAsset[]>(coloredAssets);
+  useEffect(() => {
+    const newAssets = generateAssets(assets, 2, [5,13])
+    const newAssetsColorized = newAssets.map(asset => matchColors(asset))
+    setAssets(prevState => [...prevState, ...newAssetsColorized])
+  }, [])
 
   return (
     <AssetsContext.Provider value={{ assets, setAssets }}>
