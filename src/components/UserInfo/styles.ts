@@ -7,7 +7,7 @@ export const Container = styled.div`
   gap: 0.5rem;
   color: white;
 
-  @media (max-width: 540px) {
+  @media (max-width: 400px) {
     display: none;
   }
 `;
@@ -28,8 +28,12 @@ export const Texts = styled.div`
   p {
     font-size: 12px;
     font-weight: 300;
-    color: #7F8891;
+    color: #7f8891;
     font-style: italic;
+  }
+
+  @media (max-width: 540px) {
+    display: none;
   }
 `;
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import StickyBox from "react-sticky-box";
 import { useAppContext } from "../../contexts/appContext";
 import { generateFormTitle } from "../../utils/generateFormTitle";
 import AssetForm from "../AssetForm";
@@ -11,18 +12,20 @@ const AssetInput: React.FC = () => {
   const [formTitle, setFormTitle] = useState<React.ReactElement | null>();
 
   useEffect(() => {
-    if(appContext === null) return
-    setFormTitle(generateFormTitle[appContext])
+    if (appContext === null) return;
+    setFormTitle(generateFormTitle[appContext]);
   }, [appContext]);
   return (
     <>
       {appContext !== null && (
-        <Container>
-          <Sticky>
-            {formTitle && <SectionName>{formTitle}</SectionName>}
-            <AssetForm />
-          </Sticky>
-        </Container>
+        <StickyBox offsetTop={16}>
+          <Container>
+            <Sticky>
+              {formTitle && <SectionName>{formTitle}</SectionName>}
+              <AssetForm />
+            </Sticky>
+          </Container>
+        </StickyBox>
       )}
     </>
   );

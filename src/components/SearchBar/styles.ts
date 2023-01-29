@@ -13,7 +13,7 @@ export const Container = styled.div`
   align-items: center;
   gap: 0.75rem;
 
-  @media (max-width: 620px) {
+  @media (max-width: 840px) {
     width: 100%
   }
 `;
