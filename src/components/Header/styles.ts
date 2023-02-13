@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   position: sticky;
   top: 0;
   z-index: 10;
-  backdrop-filter: blur(400px) brightness(0.5);
+  backdrop-filter: blur(300px) brightness(0.6);
   flex: 0 1 50px;
   background-color: transparent;
   border-bottom: 1px solid #656565;
